@@ -22,7 +22,6 @@ router.use('/', (req, res) => {
   const chunkLimit = 16 * 1024
   const chunkCount = Math.ceil(stat.size / chunkLimit)
 
-
   res.writeHead(200)
 
   if(chunkCount <= 1)

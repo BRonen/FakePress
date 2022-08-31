@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 	<head>
 		<title>
-		Hello worlds
+			Hello world
 		</title>
 		<style>
 			body{
@@ -15,6 +15,7 @@
 				color: #FAFAFA;
 			}
 			.img{
+				transition: opacity, -webkit-transform, 1s;
 				-webkit-transition: opacity, -webkit-transform, 1s;
 
 				display: flex;
@@ -31,6 +32,8 @@
 			}
 			.img:hover{
 				opacity: 0;
+				transition: opacity, -webkit-transform, 2s;
+				transform: rotate(900deg) scale(0.05);
 				-webkit-transition: opacity, -webkit-transform, 2s;
 				-webkit-transform: rotate(900deg) scale(0.05);
 			}
