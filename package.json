@@ -9,11 +9,13 @@
     "lint": "eslint --fix .",
     "test": "jest",
     "start": "node src/index.js",
-    "dev": "nodemon -r dotenv/config src/index.js"
+    "dev": "nodemon -r dotenv/config src/index.js",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "dotenv": "^16.0.2",
     "eslint": "^8.23.1",
+    "husky": "^8.0.1",
     "jest": "^29.0.3",
     "nodemon": "^2.0.19"
   }
