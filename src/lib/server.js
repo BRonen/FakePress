@@ -1,9 +1,9 @@
 const http = require('http')
 const url = require('url')
 
-function core(router){
+function core(router, urlParse){
   return async (req, res) => {
-    const { pathname } = url.parse(req.url, true)
+    const { pathname } = urlParse(req.url, true)
 
     await router.exec(pathname, req, res)
 
@@ -13,4 +13,10 @@ function core(router){
   }
 }
 
-module.exports = (router) => http.createServer( core( router ) )
+function App(router){
+  return http.createServer( core( router, url.parse ) )
+}
+
+module.exports = {
+  App, core
+}

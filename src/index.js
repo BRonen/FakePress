@@ -1,7 +1,9 @@
-const server = require('./lib/server')
+const { App } = require('./lib/server')
 
 const routes = require('./routes')
 
-server(routes).listen(
-  5000, () => console.log('Running at http://localhost:5000/')
+const port = process.env.PORT
+
+App(routes).listen(
+  port, () => console.log(`Running at http://localhost:${port}/`)
 )

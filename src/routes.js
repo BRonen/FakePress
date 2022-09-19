@@ -2,9 +2,26 @@ const path = require('path')
 const fs = require('fs')
 const url = require('url')
 
-const router = require('./lib/router')
+const Router = require('./lib/router')
 
 let counter = 1
+
+const router = Router()
+const nestedRouter = Router()
+
+nestedRouter.use(
+  '/', (_, res) => {
+    return res.write('/nested')
+  }
+)
+
+nestedRouter.use(
+  '/main', (_, res) => {
+    return res.write('/nested/main')
+  }
+)
+
+router.use('/nested', nestedRouter)
 
 router.use('/main', (_, res) => {
   return res.write('main')
