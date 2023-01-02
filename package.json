@@ -1,22 +1,23 @@
 {
   "name": "fakepress",
   "version": "1.0.0",
-  "main": "src/index.js",
-  "repository": "https://github.com/bronen/fakepress",
+  "repository": "https://github.com/BRonen/FakePress.git",
   "author": "Brenno Rodrigues <brennopereira6@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint --fix .",
-    "test": "jest",
-    "start": "node src/index.js",
-    "dev": "nodemon -r dotenv/config src/index.js",
-    "prepare": "husky install"
+    "build": "tsc --project ./",
+    "dev": "nodemon src/index.ts",
+    "test": "jest"
   },
   "devDependencies": {
-    "dotenv": "^16.0.2",
-    "eslint": "^8.23.1",
-    "husky": "^8.0.1",
-    "jest": "^29.0.3",
-    "nodemon": "^2.0.19"
+    "@types/jest": "^29.2.5",
+    "@types/node": "^18.11.18",
+    "@types/supertest": "^2.0.12",
+    "jest": "^29.3.1",
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
   }
 }
