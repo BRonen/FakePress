@@ -13,24 +13,28 @@ class Fakepress {
     return this.server?.address()
   }
 
+  pushRoute(route: string, callbacks: Array<routeCallback>) {
+    callbacks.forEach(callback => this.router.add(route, callback))
+  }
+
   get(route: string, ...callbacks: Array<routeCallback>) {
-    callbacks.forEach(callback => this.router.add(`GET@${route}`, callback))
+    this.pushRoute(`GET@${route}`, callbacks)
   }
 
-  post(route: string, callbacks: Array<routeCallback>) {
-    callbacks.forEach(callback => this.router.add(`POST@${route}`, callback))
+  post(route: string, ...callbacks: Array<routeCallback>) {
+    this.pushRoute(`POST@${route}`, callbacks)
   }
 
-  put(route: string, callbacks: Array<routeCallback>) {
-    callbacks.forEach(callback => this.router.add(`PUT@${route}`, callback))
+  put(route: string, ...callbacks: Array<routeCallback>) {
+    this.pushRoute(`PUT@${route}`, callbacks)
   }
 
-  patch(route: string, callbacks: Array<routeCallback>) {
-    callbacks.forEach(callback => this.router.add(`PATCH@${route}`, callback))
+  patch(route: string, ...callbacks: Array<routeCallback>) {
+    this.pushRoute(`PATCH@${route}`, callbacks)
   }
 
-  delete(route: string, callbacks: Array<routeCallback>) {
-    callbacks.forEach(callback => this.router.add(`DELETE@${route}`, callback))
+  delete(route: string, ...callbacks: Array<routeCallback>) {
+    this.pushRoute(`DELETE@${route}`, callbacks)
   }
 
   listen(port?: number, callback?: () => void) {

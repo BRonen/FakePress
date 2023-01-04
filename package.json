@@ -5,8 +5,9 @@
   "author": "Brenno Rodrigues <brennopereira6@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "start": "node build/example.js",
     "build": "tsc --project ./",
-    "dev": "nodemon src/index.ts",
+    "dev": "nodemon run.ts",
     "test": "jest"
   },
   "devDependencies": {

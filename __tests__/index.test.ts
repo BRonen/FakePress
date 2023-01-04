@@ -24,8 +24,8 @@ describe('Server module', () => {
     const server = new Fakepress()
 
     server.get('/', (_, res) => {
-      res.write('hello world')
-      res.end()
+      res.rawResponse.write('hello world')
+      res.rawResponse.end()
     })
 
     request(server)

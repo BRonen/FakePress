@@ -1,7 +1,9 @@
 import { IncomingMessage, ServerResponse } from 'http'
 import { parse } from 'url'
+import Request from './request'
+import Response from './response'
 
-export type routeCallback = (request: IncomingMessage, response: ServerResponse) => void
+export type routeCallback = (request: Request, response: Response) => void
 
 export class Router {
   private routes: Record<string, Array<routeCallback>>
@@ -26,7 +28,7 @@ export class Router {
       console.log(this.routes, `${method}@${route}`)
 
       if(this.routes[`${method}@${route}`])
-        this.routes[`${method}@${route}`].forEach((cb) => cb(req, res))
+        this.routes[`${method}@${route}`].forEach((cb) => cb(new Request(req), new Response(res)))
       else res.end()
 
       console.log(`Request received at: [${method}@${route}]`)
