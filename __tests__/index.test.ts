@@ -24,12 +24,44 @@ describe('Server module', () => {
     const server = new Fakepress()
 
     server.get('/', (_, res) => {
-      res.rawResponse.write('hello world')
-      res.rawResponse.end()
+      res.send('hello world')
     })
 
     request(server)
       .get('/')
       .expect(200, 'hello world')
+  })
+
+  it('Should receive the {name} query param of request', () => {
+    const server = new Fakepress()
+
+    server.get('/', (req, res) => {
+      const name = req.query?.name
+      res.send(name)
+    })
+
+    request(server)
+      .get('/?name=hello world')
+      .expect(200, 'hello world')
+  })
+
+  it('Should throw back 404 if parameter is not valid', () => {
+    const server = new Fakepress()
+
+    server.get('/', (req, res) => {
+      const name = req.query?.name
+
+      if(name === 'hello') return res.send(name)
+
+      res.status(404).send(name)
+    })
+
+    request(server)
+      .get('/?name=hello')
+      .expect(200, 'hello')
+
+    request(server)
+      .get('/?name=world')
+      .expect(404, 'world')
   })
 })
