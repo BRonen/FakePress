@@ -5,19 +5,17 @@ const app = new Fakepress()
 const users: Array<string> = []
 
 app.get('/', (_, res) => {
-  res.rawResponse.write(users.join(', ') || "hello world!")
-  res.rawResponse.end()
+  res.send(users.join(', ') || "hello world!")
 })
 
 app.get('/new', (req, res) => {
   if(req.query){
     users.push(req.query?.name)
-    res.rawResponse.write('user created')
-    res.rawResponse.end()
+    res.send('user created')
     return
   }
-  res.rawResponse.write('user not defined')
-  res.rawResponse.end()
+
+  res.status(404, 'bad request').send()
 })
 
 app.listen(5003, () => console.log('listening...'))

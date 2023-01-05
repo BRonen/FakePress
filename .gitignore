@@ -2,4 +2,3 @@
 /build
 /__tests__/**.js
 .env
-run.js
