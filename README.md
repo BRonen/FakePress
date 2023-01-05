@@ -1,8 +1,11 @@
 # FakePress
-Like an express but just for learning purposes
+Like an express but just for learning purposes...
 
-## To-do
-- [ ] Improve routing parser
-- [ ] Create Request and Response abstractions
-- [ ] Add linting with git husky
-- [ ] Improve error handling
+## Try to run
+Just need to have Node.js and NPM.
+```sh
+$ npm i
+$ npm run build
+$ npm run start
+```
+Then the example.ts will run using Fakepress as dependecy.
