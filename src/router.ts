@@ -22,16 +22,17 @@ export class Router {
   exec() {
     return (req: IncomingMessage, res: ServerResponse) => {
       if(!req.url) throw 'Url property not defined on request'
-      const route = parse(req.url, true).pathname
+
+      const pathname = parse(req.url, true).pathname
       const method = req.method
 
-      console.log(this.routes, `${method}@${route}`)
+      this.routes[`${method}@${pathname}`]?.forEach(
+        cb => cb(new Request(req), new Response(res))
+      )
+      
+      res.end()
 
-      if(this.routes[`${method}@${route}`])
-        this.routes[`${method}@${route}`].forEach((cb) => cb(new Request(req), new Response(res)))
-      else res.end()
-
-      console.log(`Request received at: [${method}@${route}]`)
+      console.log(`Request received at: [${method}@${pathname}]`)
     }
   }
 }

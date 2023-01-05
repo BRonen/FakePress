@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node build/example.js",
     "build": "tsc --project ./",
-    "dev": "nodemon run.ts",
+    "dev": "nodemon example.ts",
     "test": "jest"
   },
   "devDependencies": {
