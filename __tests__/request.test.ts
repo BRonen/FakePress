@@ -1,15 +1,19 @@
-import Fakepress from '../src'
-
-jest.mock('Request', () => ({
-  parseQueryParams: jest.fn(
-    () => ({name: 'hello', age: '19'})
-  ),
-}))
+import Request from '../src/request'
 
 describe('Request parser module', () => {
   it('Should parse query params correctly', () => {
-    const server = new Fakepress()
+    const request = new Request()
 
-    server.listen()
+    expect(
+      request.parseQueryParams('hello=world')
+    ).toStrictEqual({'hello': 'world'})
+
+    expect(
+      request.parseQueryParams('name=John Galt&age=19')
+    ).toStrictEqual({'name': 'John Galt', 'age': '19'})
+    expect(
+
+      request.parseQueryParams('product=Apples&amount=12&price=cheap')
+    ).toStrictEqual({'product': 'Apples', 'amount': '12', 'price': 'cheap'})
   })
 })
